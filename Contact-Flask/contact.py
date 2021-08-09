@@ -1,7 +1,7 @@
 from typing_extensions import TypeGuard
 from flask import Flask, render_template,request
 
-from flaskext.mysql import MySQL
+from flask_mysqldb import MySQL
 
 
 
@@ -9,13 +9,10 @@ contact_me = Flask(__name__)
 mysql = MySQL(contact_me)
 
 
-contact_me.config['MYSQL_DATABASE_USER'] = 'root'
-contact_me.config['MYSQL_DATABASE_PASSWORD'] = 'Idocareboss@13'
-contact_me.config['MYSQL_DATABASE_DB'] = 'Contactdb'
-contact_me.config['MYSQL_DATABASE_HOST'] = 'localhost'
-
-conn = mysql.connect()
-
+contact_me.config['MYSQL_USER'] = 'root'
+contact_me.config['MYSQL_PASSWORD'] = 'Idocareboss@12'
+contact_me.config['MYSQL_DB'] = 'Contactdb'
+contact_me.config['MYSQL_HOST'] = 'localhost'
 
 
 
@@ -31,10 +28,10 @@ def contact():
         name = data['name']
         email = data['email']
         message = data['message']
-        cursor = conn.cursor()
-        cursor.execute('INSERT INTO userdata (name, email, message) VALUES (%s, %s)', (name, email, message))
+        curso = mysql.connection.cursor()
+        curso.execute('INSERT INTO userdata (name, email, message) VALUES (%s, %s, %s)', (name, email, message))
         mysql.connection.commit()
-        cursor.close()
+        curso.close()
         return 'Success'
     return render_template('contact.html')
 
