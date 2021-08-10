@@ -10,12 +10,12 @@ mysql = MySQL(contact_me)
 # loading all my enviroment variables from secret file
 contact_me.config.from_pyfile('settings.py')
 
-
+# route to our home page
 @contact_me.route('/')
 def home():
     return render_template('index.html')
 
-
+# route to our contact page, with form
 @contact_me.route('/contact', methods = ['GET', 'POST'])
 def contact():
     if request.method == 'POST':
@@ -32,6 +32,11 @@ def contact():
         curso.close()
         return 'Success your message has been sent successfully'
     return render_template('contact.html')
+
+# handling non-existent pages
+@contact_me.errorhandler(404)
+def page_not_found(error):
+    return render_template('error_404_page.html'), 404
 
 
 if __name__ == '__main__':
