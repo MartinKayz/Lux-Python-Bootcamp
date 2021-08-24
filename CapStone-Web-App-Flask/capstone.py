@@ -3,8 +3,16 @@ from flask import templating
 from flask.templating import render_template
 from flask_sqlalchemy import SQLAlchemy
 
+# Working on User Authenication
+from flask_bcrypt import Bcrypt
+
+from forms import RegistrationForm, LoginForm
+
+
 
 capstone_app = Flask(__name__)
+
+bcrypt = Bcrypt(capstone_app)
 
 
 ENV = 'dev'
@@ -42,8 +50,22 @@ class TrialData(db.Model):
         return f"{self.name}:{self.prog_lang}:{self.comments}"
 
 
+# user authentication routes
+
+# register
+
+@capstone_app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+
+    return render_template('register.html', title='Register', form=form)
 
 
+@capstone_app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+
+    return render_template('login.html', title='Login', form=form)
 
 
 
