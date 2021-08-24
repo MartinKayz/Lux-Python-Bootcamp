@@ -22,7 +22,7 @@
          form {   
                 border: 3px solid #f1f1f1;   
             }   
-         input[type=text], input[type=password] {   
+         input[type=number] {   
                 width: 100%;   
                 margin: 8px 0;  
                 padding: 12px 20px;   
@@ -33,12 +33,6 @@
          button:hover {   
                 opacity: 0.7;   
             }   
-          .cancelbtn {   
-                width: auto;   
-                padding: 10px 18px;  
-                margin: 10px 5px;  
-            }   
-                
              
          .container {   
                 padding: 25px;   
@@ -47,13 +41,35 @@
         </style> 
 </head>   
 <body>    
-    <center> <h1> UserData Form </h1> </center>   
-    <form>  
+    <center> <h1> LUX-ACADEMY USERS </h1> </center>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    <form action="/submit" method="POST">  
         <div class="container">   
             <label>Name : </label>   
-            <input type="text" placeholder="Enter Name" name="name" required>  
-            <label>Age: </label>   
-            <input type="number" placeholder="Enter Age" name="age">  
+            <input type="text" placeholder="Enter Your Name" name="name" required>  
+            <hr>
+            <label>Programming language </label>   
+            <input type="String" placeholder="Enter Your Favorite Programming language" name="program-language"> 
+            <hr>
+            <label>Please rate your Instructor</label>
+            <!-- <input type="radio" name="rating" value="1" /> 1
+            <input type="radio" name="rating" value="5" /> 5
+            <input type="radio" name="rating" value="10" checked /> 10 -->
+            <strong><strike>Radio buttons coming up live!!!</strike></strong>
+            <hr>
+
+            <label>Comments about your the bootcamp</label>
+            <hr>
+            <textarea
+                name="comments"
+                id=""
+                cols="30"
+                rows="10"
+                placeholder="Tell us what you liked and/or did not like in the bootcamp">
+            </textarea>
+              </div>
             <button type="submit">Submit</button>     
         </div>   
     </form>     
