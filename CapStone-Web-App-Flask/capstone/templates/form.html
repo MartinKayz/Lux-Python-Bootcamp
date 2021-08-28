@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+{% block head %}
+
+<head>
+    <style>   
+        Body {  
+          font-family: Calibri, Helvetica, sans-serif;  
+          background-color: purple;  
+        }  
+        button {   
+               background-color: #4CAF50;   
+               width: 100%;  
+                color: orange;   
+                padding: 15px;   
+                margin: 10px 0px;   
+                border: none;   
+                cursor: pointer;   
+                 }   
+         form {   
+                border: 3px solid #f1f1f1;   
+            }   
+         input[type=number] {   
+                width: 100%;   
+                margin: 8px 0;  
+                padding: 12px 20px;   
+                display: inline-block;   
+                border: 2px solid green;   
+                box-sizing: border-box;   
+            }  
+         button:hover {   
+                opacity: 0.7;   
+            }   
+             
+         .container {   
+                padding: 25px;   
+                background-color: lightblue;  
+            }   
+        </style> 
+</head> 
+
+{% endblock head %}
+
+{% block content %}   
+    <center> <h1> LUX-ACADEMY USERS </h1> </center>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    <form action="/submit" method="POST">  
+        <div class="container">   
+            <label>Name : </label>   
+            <input type="text" placeholder="Enter Your Name" name="name" required>  
+            <hr>
+            <label>Programming language </label>   
+            <input type="String" placeholder="Enter Your Favorite Programming language" name="program-language"> 
+            <hr>
+            <label>Please rate your Instructor</label>
+            <!-- <input type="radio" name="rating" value="1" /> 1
+            <input type="radio" name="rating" value="5" /> 5
+            <input type="radio" name="rating" value="10" checked /> 10 -->
+            <strong><strike>Radio buttons coming up live!!!</strike></strong>
+            <hr>
+
+            <label>Comments about your the bootcamp</label>
+            <hr>
+            <textarea
+                name="comments"
+                id=""
+                cols="30"
+                rows="10"
+                placeholder="Tell us what you liked and/or did not like in the bootcamp">
+            </textarea>
+              </div>
+            <button type="submit">Submit</button>     
+        </div>   
+    </form>     
+
+{% endblock content %}
